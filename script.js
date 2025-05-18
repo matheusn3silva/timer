@@ -1,5 +1,4 @@
 
-
 class Timer {
     constructor(hora = 0, minuto = 0, segundo = 0) {
         this.hora = hora
@@ -9,6 +8,7 @@ class Timer {
         this.intervalo = null
     }
 
+    // Começar Timer
     iniciarTimer() {
         this.parar = false
         this.resetarTimer()
@@ -26,27 +26,36 @@ class Timer {
         }, 1000)
     }
 
-    // Transforma segundo em minuto e minuto em hora
     verificarMinutoHora() {
+
+        // Transforma 60 segundo em 1 minuto  
         if (this.segundo >= 60) {
                 this.segundo = 0
                 this.minuto += 1
             }
 
+        // Transforma 60 minutos em 1 hora 
         if (this.minuto >= 60) {
             this.minuto = 0
             this.hora += 1
         }
     }
 
+    // Reiniciar Timer  
     resetarTimer() {
         this.hora = 0
         this.minuto = 0
         this.segundo = 0
     }
 
+    // Pausar Timer  
     pararTimer() {
         this.parar = true
+    }
+
+    // Continuar Timer
+    continuarTimer() {
+        this.parar = false
     }
 
 }
