@@ -11,7 +11,6 @@ class Timer {
     // Começar Timer
     iniciarTimer() {
         this.parar = false
-        this.resetarTimer()
         
         this.intervalo = setInterval(() => {
             if (this.parar) {
@@ -22,8 +21,37 @@ class Timer {
             this.segundo += 1
             this.verificarMinutoHora()
 
-            console.log(`${this.hora.toString().padStart(2, '0')}:${this.minuto.toString().padStart(2, '0')}:${this.segundo.toString().padStart(2, '0')}`)
+            console.log(`${this.formatarTempo(this.hora)}:${this.formatarTempo(this.minuto)}:${this.formatarTempo(this.segundo)}`)
         }, 1000)
+    }
+
+    // Reiniciar Timer  
+    resetarTimer() {
+        this.hora = 0
+        this.minuto = 0
+        this.segundo = 0
+    }
+
+    // Finalizar Timer
+    finalizarTimer() {
+        clearInterval(this.intervalo)
+        this.intervalo = null
+        this.resetarTimer()
+        this.parar = true
+    }
+
+    // Pausar Timer  
+    pausarTimer() {
+        this.parar = true
+    }
+
+    // Continuar Timer
+    continuarTimer() {
+        this.parar = false
+
+        if (!this.intervalo) {
+            this.iniciarTimer()
+        }
     }
 
     verificarMinutoHora() {
@@ -41,22 +69,10 @@ class Timer {
         }
     }
 
-    // Reiniciar Timer  
-    resetarTimer() {
-        this.hora = 0
-        this.minuto = 0
-        this.segundo = 0
+    formatarTempo(valor) {
+        return valor.toString().padStart(2, '0')
     }
 
-    // Pausar Timer  
-    pararTimer() {
-        this.parar = true
-    }
-
-    // Continuar Timer
-    continuarTimer() {
-        this.parar = false
-    }
 
 }
 
