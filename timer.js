@@ -75,7 +75,7 @@ document.getElementById("btn-iniciar").addEventListener("click", () => {
 })
 
 document.getElementById("btn-pausar").addEventListener("click", () => {
-    timer.pausarTimer()
+    timer.pararTimer()
 })
 
 document.getElementById("btn-resetar").addEventListener("click", () => {

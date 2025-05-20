@@ -1,7 +1,17 @@
-/* style.css */
+@import url('https://fonts.googleapis.com/css2?family=Electrolize&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
-    margin: 0;
+    width: 100%;
+    height: 100dvh;
+    display: grid;
+    justify-content: center;
+    align-content: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #F8FBFE;
     color: #333;
@@ -9,7 +19,6 @@ body {
 
 .container {
     max-width: 500px;
-    margin: 80px auto;
     padding: 20px;
     background-color: white;
     border: 2px solid #84B9F3;
@@ -29,6 +38,7 @@ h1 {
     color: #333;
     margin-bottom: 20px;
     padding: 20px;
+    font-family: "Electrolize", sans-serif;
     border: 2px dashed #84B9F3;
     border-radius: 10px;
     background-color: #F8FBFE;
