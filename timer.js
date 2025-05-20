@@ -4,24 +4,15 @@ class Timer {
         this.hora = hora
         this.minuto = minuto
         this.segundo = segundo
-        this.parar = false
         this.intervalo = null
         this.display = document.getElementById('tempo')
     }
 
     // Começar Timer
-    iniciarTimer() {
-        this.parar = false
-        
+    iniciarTimer() {        
         if (this.intervalo) return // Evita múltiplos timers
 
         this.intervalo = setInterval(() => {
-            if (this.parar) {
-                clearInterval(this.intervalo)
-                this.intervalo = null
-                return
-            }
-
             this.segundo += 1
             this.verificarMinutoHora()
             this.atualizaDisplay()
@@ -59,30 +50,19 @@ class Timer {
         this.minuto = 0
         this.segundo = 0
         this.atualizaDisplay()
+        this.pararTimer()
     }
 
     // Finalizar Timer
     finalizarTimer() {
-        clearInterval(this.intervalo)
-        this.intervalo = null
         this.resetarTimer()
-        this.parar = true
     }
 
     // Pausar Timer  
-    pausarTimer() {
-        this.parar = true
+    pararTimer() {
+        clearInterval(this.intervalo)
+        this.intervalo = null
     }
-
-    // Continuar Timer
-    continuarTimer() {
-        this.parar = false
-
-        if (!this.intervalo) {
-            this.iniciarTimer()
-        }
-    }
-
 
 }
 
@@ -96,10 +76,6 @@ document.getElementById("btn-iniciar").addEventListener("click", () => {
 
 document.getElementById("btn-pausar").addEventListener("click", () => {
     timer.pausarTimer()
-})
-
-document.getElementById("btn-continuar").addEventListener("click", () => {
-    timer.continuarTimer()
 })
 
 document.getElementById("btn-resetar").addEventListener("click", () => {
