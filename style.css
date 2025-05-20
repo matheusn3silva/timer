@@ -10,6 +10,7 @@ body {
     width: 100%;
     height: 100dvh;
     display: grid;
+    padding: 0 20px;
     justify-content: center;
     align-content: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -52,6 +53,8 @@ h1 {
 }
 
 button {
+    min-width: 100px;
+    text-align: center;
     background-color: #FF356A;
     color: #fff;
     border: none;
