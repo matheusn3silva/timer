@@ -6,6 +6,7 @@ class Timer {
         this.segundo = segundo
         this.intervalo = null
         this.display = document.getElementById('tempo')
+        this.history = []
     }
 
     // Começar Timer
@@ -64,6 +65,11 @@ class Timer {
         this.intervalo = null
     }
 
+    // Cria histórico
+    createItemHistory() {
+        
+    }
+
 }
 
 // ====== Controle dos Botões ======
@@ -85,3 +91,14 @@ document.getElementById("btn-resetar").addEventListener("click", () => {
 document.getElementById("btn-finalizar").addEventListener("click", () => {
     timer.finalizarTimer()
 })
+
+
+// ====== Histórico ======
+
+class Historico {
+    constructor() {
+
+    }
+
+    deleteItem() {}
+}
