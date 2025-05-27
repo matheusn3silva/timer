@@ -6,7 +6,6 @@ class Timer {
         this.segundo = segundo
         this.intervalo = null
         this.display = document.getElementById('tempo')
-        this.history = []
     }
 
     // Começar Timer
@@ -56,7 +55,10 @@ class Timer {
 
     // Finalizar Timer
     finalizarTimer() {
-        this.resetarTimer()
+        if (!this.segundo == 0) {
+            historico.adicionarItem(this.display.textContent)
+            this.resetarTimer()
+        }
     }
 
     // Pausar Timer  
@@ -65,16 +67,70 @@ class Timer {
         this.intervalo = null
     }
 
-    // Cria histórico
-    createItemHistory() {
-        
+}
+
+// ====== Histórico ======
+
+class Historico {
+    constructor() {
+        this.id = 0
+        this.history = document.getElementById('box-history')
+        this.msgHistoryEmpty = document.getElementById('msg-historico-vazio')
     }
 
+    atualizaMsgHistoricoVazio() {
+        const itens = this.history.querySelectorAll('.item')
+
+        if (itens.length == 0) {
+            this.msgHistoryEmpty.style.display = 'block'
+        } else {
+            this.msgHistoryEmpty.style.display = 'none'
+        }
+    }
+
+    adicionarItem(tempo){
+        const item = document.createElement('div')
+        item.classList.add('item', 'fade-in')
+        item.setAttribute('id', `${this.id}`)
+
+        item.innerHTML = `
+            <div class="item-valor">${tempo}</div>
+            <button class="btn-delete"><i class="fa-solid fa-trash"></i></button>
+        `
+
+        this.history.appendChild(item)
+
+        item.querySelector('.btn-delete').addEventListener('click', () => {
+            this.removerItem(item.id)
+        })
+
+        setInterval(() => {
+            item.classList.remove('fade-in')
+        }, 301)
+
+        this.id += 1
+
+        this.atualizaMsgHistoricoVazio()
+    }
+
+    removerItem(id) {
+        const item = document.getElementById(id)
+
+        if (item) {
+            item.classList.add('fade-out')
+
+            setTimeout(() => {
+                this.history.removeChild(item) 
+                this.atualizaMsgHistoricoVazio() 
+            }, 300);
+        }
+    }
 }
 
 // ====== Controle dos Botões ======
 
 const timer = new Timer()
+const historico = new Historico()
 
 document.getElementById("btn-iniciar").addEventListener("click", () => {
     timer.iniciarTimer()
@@ -93,12 +149,3 @@ document.getElementById("btn-finalizar").addEventListener("click", () => {
 })
 
 
-// ====== Histórico ======
-
-class Historico {
-    constructor() {
-
-    }
-
-    deleteItem() {}
-}
